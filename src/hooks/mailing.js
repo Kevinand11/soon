@@ -28,6 +28,7 @@ export const useMailing = () => {
 	})
 
 	const submitEmail = async () => {
+		if (state.loading) return
 		state.error = ''
 		const res = isEmail(state.email)
 		if (!res.valid) return state.error = 'Please provide a valid email!'
