@@ -33,5 +33,6 @@ p {
 }
 button {
     margin: 0.5rem 0;
+    font-weight: 600 !important;
 }
 </style>

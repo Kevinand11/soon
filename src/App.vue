@@ -1,10 +1,10 @@
 <template>
     <img alt="Stranerd Logo" src="./assets/stranerd_logo.svg" height="50">
-    <h2>Website coming soon</h2>
+    <h2>Website Launching Soon</h2>
     <p>
-        We are building you a platform where you can have access to learn from NERDS.
+        We are building you a platform where you have access to learn from NERDS.
         <br>
-        Nerds are students who have mastery in subjects you need help with
+        Nerds are students who have mastery in subjects you need help with.
     </p>
     <MailingForm />
 </template>
@@ -30,10 +30,12 @@ body {
     justify-content: center;
     background: url('./assets/background.png');
     padding: 1rem;
+    text-align: center;
 }
 h2 {
     color: white;
     margin: 1rem 0;
+    font-weight: 600;
 }
 p {
     color: white;
