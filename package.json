@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap": "^4.6.0",
     "core-js": "^3.6.5",
+    "sd-validate": "^1.0.4",
     "vue": "^3.0.0"
   },
   "devDependencies": {

@@ -1,10 +1,13 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <MailingForm />
 </template>
 
 <script>
+import MailingForm from './components/MailingForm'
 export default {
-  name: 'App'
+    name: 'App',
+    components: { MailingForm },
 }
 </script>
 
@@ -13,6 +16,7 @@ export default {
     width: 100vw;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
