@@ -2,7 +2,7 @@ import { reactive, toRefs, watch } from 'vue'
 import { isEmail } from 'sd-validate/lib/rules'
 
 const DATABASE_URL = process.env.NODE_ENV === 'production' ?
-	'http://localhost:5003/emails.json?ns=ss-nuxtify' :
+	'https://stranerd-13084.firebaseio.com/emails.json' :
 	'http://localhost:5003/emails.json?ns=ss-nuxtify'
 
 const saveEmail = async (email) => {
