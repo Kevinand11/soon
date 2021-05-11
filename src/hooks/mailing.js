@@ -15,6 +15,15 @@ const saveEmail = async (email) => {
 	else throw (await res.json()).error
 }
 
+const getEmails = async () => {
+	const res = await fetch(`${DATABASE_URL}`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' }
+	})
+	if (res.ok) return res.json()
+	else throw (await res.json()).error
+}
+
 export const useMailing = () => {
 	const state = reactive({
 		error: '',
@@ -42,4 +51,27 @@ export const useMailing = () => {
 	}
 
 	return { submitEmail, ...toRefs(state) }
+}
+
+export const useMails = () => {
+	const state = reactive({
+		error: '',
+		loading: false,
+		emails: [],
+	})
+
+	const fetchEmails = async () => {
+		if (state.loading) return
+		state.error = ''
+		try {
+			state.loading = true
+			const emailsObj = await getEmails()
+			const emailSet = new Set(Object.values(emailsObj))
+			state.emails = []
+			emailSet.forEach((e) => state.emails.push(e))
+		} catch (error) { state.error = error }
+		finally { state.loading = false }
+	}
+
+	return { fetchEmails, ...toRefs(state) }
 }
