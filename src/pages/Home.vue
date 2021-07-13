@@ -5,7 +5,8 @@
 
 
 
-        Click here to sign up for our mailing list and have updates delivered directly to your inbox.
+        Sign up for our mailing list and have updates delivered directly to your inbox.
+        <br>
         Early bees get freebies!
 
 
