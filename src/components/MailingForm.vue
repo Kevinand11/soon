@@ -5,7 +5,7 @@
             <i v-if="loading" class="spinner-border text-light" role="status" style="width:2rem;height:2rem;">
                 <span class="sr-only">Loading...</span>
             </i>
-            <span v-else>Subscribe For Beta Testing</span>
+            <span v-else>Subscribe To Our Mailing List Now</span>
         </button>
         <p v-if="error" class="text-danger">{{ error }}</p>
         <p v-if="message" class="text-success">{{ message }}</p>
