@@ -1,9 +1,7 @@
 import { reactive, toRefs, watch } from 'vue'
-import { isEmail } from 'sd-validate/lib/rules'
+import { v } from 'valleyed'
 
-const DATABASE_URL = process.env.NODE_ENV === 'production' ?
-	'https://stranerd-13084.firebaseio.com/emails.json' :
-	'http://localhost:5003/emails.json?ns=ss-nuxtify'
+const DATABASE_URL = 'https://stranerd-13084.firebaseio.com/emails.json'
 
 const saveEmail = async (email) => {
 	const res = await fetch(`${DATABASE_URL}`, {
@@ -39,7 +37,7 @@ export const useMailing = () => {
 	const submitEmail = async () => {
 		if (state.loading) return
 		state.error = ''
-		const res = isEmail(state.email)
+		const res = v.string().email().parse(state.email)
 		if (!res.valid) return state.error = 'Please provide a valid email!'
 		try {
 			state.loading = true
