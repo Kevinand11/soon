@@ -18,9 +18,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: "deploy"
+      - name: Create service account for storage
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+        run: echo "$GCP_SERVICE_ACCOUNT" > ./credentials.json
+      - name: Save credentials into environment variables
+        run: echo "GOOGLE_APPLICATION_CREDENTIALS=./credentials.json" >> $GITHUB_ENV
+      - name: Deploy to Firebase
+        shell: bash
+        run: |
+          ./node_modules/.bin/firebase deploy --non-interactive
+      - name: Remove credentials file
+        if: success() || failure()
+        run: rm credentials.json
