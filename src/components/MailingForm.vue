@@ -1,8 +1,14 @@
 <template>
     <form @submit.prevent="submit">
         <div style="display: flex; gap: 0.5rem;">
-            <input v-model="form.name" required type="text" class="form-control" placeholder="Full name">
-            <input v-model="form.dob" required type="date" :max="new Date().toISOString().split('T')[0]" class="form-control" placeholder="Date of birth">
+            <div style="display: flex; flex-direction: column; width: 100%">
+                <label for="name">Full name</label>
+                <input id="name" v-model="form.name" required type="text" class="form-control" placeholder="Your full name">
+            </div>
+            <div style="display: flex; flex-direction: column; width: 100%;">
+                <label for="dob">Date of Birth</label>
+                <input id="dob" v-model="form.dob" required type="date" :max="new Date().toISOString().split('T')[0]" class="form-control" placeholder="Date of birth">
+            </div>
         </div>
         <input v-model="form.email" required type="email" class="form-control" placeholder="Enter your email address">
         <select v-model="form.schoolType" required class="form-control" placeholder="What academic level are you in?">
@@ -45,5 +51,12 @@ button {
 }
 option {
     text-transform: capitalize;
+}
+label {
+    color: #ffffff !important;
+    text-align: left;
+}
+.form-control {
+    width: 100%;
 }
 </style>
