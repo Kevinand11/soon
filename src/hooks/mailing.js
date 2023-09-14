@@ -1,20 +1,35 @@
 import { reactive, toRefs, watch } from 'vue'
-import { v } from 'valleyed'
 
-const DATABASE_URL = 'https://stranerd-13084.firebaseio.com/emails.json'
+const DATABASE_URL = 'https://stranerd-13084.firebaseio.com/waitlist.json'
 
-const saveEmail = async (email) => {
-	const res = await fetch(`${DATABASE_URL}`, {
+const SchoolTypes = {
+	"Graduate": "Graduate",
+	"Undergraduate": "Undergraduate",
+	"High School": "High School",
+	"Other": "Other"
+}
+
+const getNewForm = () => ({
+	name: '',
+	dob: new Date().toISOString().split('T')[0],
+	email: '',
+	schoolType: SchoolTypes.Undergraduate,
+	schoolName: '',
+	topics: ''
+})
+
+const saveEmail = async (body) => {
+	const res = await fetch(DATABASE_URL, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(email),
+		body: JSON.stringify(body),
 	})
 	if (res.ok) return res.json()
 	else throw (await res.json()).error
 }
 
 const getEmails = async () => {
-	const res = await fetch(`${DATABASE_URL}`, {
+	const res = await fetch(DATABASE_URL, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' }
 	})
@@ -24,31 +39,29 @@ const getEmails = async () => {
 
 export const useMailing = () => {
 	const state = reactive({
+		form: getNewForm(),
 		error: '',
 		message: '',
 		loading: false,
-		email: '',
 	})
 
 	watch(() => state.email, () => {
 		if (state.email) state.error = ''
 	})
 
-	const submitEmail = async () => {
+	const submit = async () => {
 		if (state.loading) return
 		state.error = ''
-		const res = v.string().email().parse(state.email)
-		if (!res.valid) return state.error = 'Please provide a valid email!'
 		try {
 			state.loading = true
-			await saveEmail(state.email)
-			state.email = ''
+			await saveEmail(state.form)
+			state.form = getNewForm()
 			state.message = 'Email submitted successfully!'
 		} catch (error) { state.error = error }
 		finally { state.loading = false }
 	}
 
-	return { submitEmail, ...toRefs(state) }
+	return { submit, ...toRefs(state), SchoolTypes }
 }
 
 export const useMails = () => {

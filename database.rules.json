@@ -1,6 +1,6 @@
 {
   "rules": {
-    "emails": {
+    "waitlist": {
       ".write": "true",
       ".read": "true"
     },

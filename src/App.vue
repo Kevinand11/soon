@@ -14,7 +14,8 @@ body {
 }
 #app {
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
