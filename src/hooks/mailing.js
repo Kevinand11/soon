@@ -51,13 +51,15 @@ export const useMailing = () => {
 
 	const submit = async () => {
 		if (state.loading) return
+		const prompt = window.confirm('Continue to join Stranerd\'s Telegram Community?')
+		if (prompt) window.open('https://t.me/+2LASPjzZLWVjMWZk', '_blank')
 		state.error = ''
 		try {
 			state.loading = true
 			await saveEmail(state.form)
 			state.form = getNewForm()
 			state.message = 'Email submitted successfully!'
-		} catch (error) { state.error = error }
+		} catch (error) { state.error = error.message }
 		finally { state.loading = false }
 	}
 
