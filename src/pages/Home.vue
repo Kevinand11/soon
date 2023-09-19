@@ -1,5 +1,5 @@
 <template>
-    <img alt="Stranerd Logo" src="../assets/stranerd_logo.svg" height="50">
+    <img alt="Stranerd Logo" src="../assets/stranerd_logo.png" height="50">
     <h2>Website Launching Soon!</h2>
     <p>
         Sign up for our mailing list and have updates delivered directly to your inbox.

@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <img alt="Stranerd Logo" src="../assets/stranerd_logo.svg" height="50">
+        <img alt="Stranerd Logo" src="../assets/stranerd_logo.png" height="50">
        <ol class="list-group mt-3">
            <li class="list-group-item">
                Total Emails: {{ emails.length }}
